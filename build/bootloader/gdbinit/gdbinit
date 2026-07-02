@@ -1,0 +1,2 @@
+source C:/Projects/OpenControlCenter_CPP/build/bootloader/gdbinit/symbols
+source C:/Projects/OpenControlCenter_CPP/build/bootloader/gdbinit/connect

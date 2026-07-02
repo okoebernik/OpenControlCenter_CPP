@@ -1,0 +1,4 @@
+Command: cmake -G Ninja -DPYTHON_DEPS_CHECKED=1 -DPYTHON=C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe -DESP_PLATFORM=1 -DIDF_TARGET=esp32p4 -DCCACHE_ENABLE=1 C:\Projects\OpenControlCenter_CPP
+info: Choice SPIRAM_USE has multiple active selections. The last one will be used: SPIRAM_USE_MALLOC .
+info: Choice ESPTOOLPY_FLASHSIZE has multiple active selections. The last one will be used: ESPTOOLPY_FLASHSIZE_32MB .
+info: Choice ESPTOOLPY_FLASHMODE has multiple active selections. The last one will be used: ESPTOOLPY_FLASHMODE_QIO .

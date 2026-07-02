@@ -1,0 +1,280 @@
+Command: C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe C:\Espressif\frameworks\esp-idf-v5.5.4\tools/idf_monitor.py -p COM9 -b 115200 --toolchain-prefix riscv32-esp-elf- --target esp32p4 --revision 1 --decode-panic backtrace C:\Projects\OpenControlCenter_CPP\build\OpenControlCenter.elf C:\Projects\OpenControlCenter_CPP\build\bootloader\bootloader.elf --force-color -m 'C:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe' 'C:\Espressif\frameworks\esp-idf-v5.5.4\tools\idf.py' '-p' 'COM9'
+[0;32mI (106) esp_image: segment 1: paddr=0002b874 vaddr=30100000 sizeESP-ROM:esp32p4-eco2-20240710[0m
+Build:Jul 10 2024
+rst:0x17 (CHIP_USB_UART_RESET),boot:0xf (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x480017f8
+SPI mode:DIO, clock div:1
+load:0x4ff33ce0,len:0x173c
+load:0x4ff29ed0,len:0xff0
+load:0x4ff2cbd0,len:0x3608
+entry 0x4ff29eda
+[0;32mI (25) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Jul  2 2026 21:27:20[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+Guru Meditation Error: Core 0 panic'ed (Store/AMO access fault)
+Core 0 register dump:
+PC      : 0x4ff2f5b4  RA      : 0x4ff2a090  SP      : 0x4ff3cd30  GP      : 0x00000000
+TP      : 0x00000000  T0      : 0x4fc10f0e  T1      : 0x4fc0072c  T2      : 0x4ff3ce38
+S0      : 0x00000067  S1      : 0x0000006a  A0      : 0x00000000  A1      : 0x00000011
+A2      : 0x00000400  A3      : 0x5008e380  A4      : 0x5008e37c  A5      : 0x00000001
+A6      : 0xa0000000  A7      : 0x0000000a  S2      : 0x00000000  S3      : 0x4ff40000
+S4      : 0x0000ffff  S5      : 0x4fc1da4c  S6      : 0x00007d70  S7      : 0x4ff40000
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000
+T3      : 0x00000000  T4      : 0xd53302e7  T5      : 0xd7b30015  T6      : 0x871302e7
+MSTATUS : 0x00001880  MCAUSE  : 0x38000007  MTVAL   : 0x5008e380  INTLEVEL: 0x4ff2a08c
+
+
+add symbol table from file "C:\Projects\OpenControlCenter_CPP\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+0x00000000 in ?? ()
+#0  0x00000000 in ?? ()
+#1  0x4ff2a090 in bootloader_init () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader_support/src/esp32p4/bootloader_esp32p4.c:166
+#2  0x4ff29eee in call_start_cpu0 () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader/subproject/main/bootloader_start.c:34
+#3  0x4fc04f6c in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+ESP-ROM:esp32p4-eco2-20240710
+Build:Jul 10 2024
+rst:0x7 (HP_SYS_HP_WDT_RESET),boot:0xf (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4fc00f36
+SPI mode:DIO, clock div:1
+load:0x4ff33ce0,len:0x173c
+load:0x4ff29ed0,len:0xff0
+load:0x4ff2cbd0,len:0x3608
+entry 0x4ff29eda
+[0;32mI (25) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Jul  2 2026 21:27:20[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+Guru Meditation Error: Core 0 panic'ed (Store/AMO access fault)
+Core 0 register dump:
+PC      : 0x4ff2f5b4  RA      : 0x4ff2a090  SP      : 0x4ff3cd30  GP      : 0x00000000
+TP      : 0x00000000  T0      : 0x4fc10f0e  T1      : 0x4fc0072c  T2      : 0x4ff3ce38
+S0      : 0x00000067  S1      : 0x0000006a  A0      : 0x00000000  A1      : 0x00000011
+A2      : 0x00000400  A3      : 0x5008e380  A4      : 0x5008e37c  A5      : 0x00000001
+A6      : 0xa0000000  A7      : 0x0000000a  S2      : 0x00000000  S3      : 0x4ff40000
+S4      : 0x0000ffff  S5      : 0x4fc1da4c  S6      : 0x00007d70  S7      : 0x4ff40000
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000
+T3      : 0x00000000  T4      : 0xd53302e7  T5      : 0xd7b30015  T6      : 0x871302e7
+MSTATUS : 0x00001880  MCAUSE  : 0x38000007  MTVAL   : 0x5008e380  INTLEVEL: 0x4ff2a08c
+
+
+add symbol table from file "C:\Projects\OpenControlCenter_CPP\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+0x00000000 in ?? ()
+#0  0x00000000 in ?? ()
+#1  0x4ff2a090 in bootloader_init () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader_support/src/esp32p4/bootloader_esp32p4.c:166
+#2  0x4ff29eee in call_start_cpu0 () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader/subproject/main/bootloader_start.c:34
+#3  0x4fc04f6c in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+ESP-ROM:esp32p4-eco2-20240710
+Build:Jul 10 2024
+rst:0x7 (HP_SYS_HP_WDT_RESET),boot:0xf (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4fc00f36
+SPI mode:DIO, clock div:1
+load:0x4ff33ce0,len:0x173c
+load:0x4ff29ed0,len:0xff0
+load:0x4ff2cbd0,len:0x3608
+entry 0x4ff29eda
+[0;32mI (25) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Jul  2 2026 21:27:20[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+Guru Meditation Error: Core 0 panic'ed (Store/AMO access fault)
+Core 0 register dump:
+PC      : 0x4ff2f5b4  RA      : 0x4ff2a090  SP      : 0x4ff3cd30  GP      : 0x00000000
+TP      : 0x00000000  T0      : 0x4fc10f0e  T1      : 0x4fc0072c  T2      : 0x4ff3ce38
+S0      : 0x00000067  S1      : 0x0000006a  A0      : 0x00000000  A1      : 0x00000011
+A2      : 0x00000400  A3      : 0x5008e380  A4      : 0x5008e37c  A5      : 0x00000001
+A6      : 0xa0000000  A7      : 0x0000000a  S2      : 0x00000000  S3      : 0x4ff40000
+S4      : 0x0000ffff  S5      : 0x4fc1da4c  S6      : 0x00007d70  S7      : 0x4ff40000
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000
+T3      : 0x00000000  T4      : 0xd53302e7  T5      : 0xd7b30015  T6      : 0x871302e7
+MSTATUS : 0x00001880  MCAUSE  : 0x38000007  MTVAL   : 0x5008e380  INTLEVEL: 0x4ff2a08c
+
+
+add symbol table from file "C:\Projects\OpenControlCenter_CPP\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+0x00000000 in ?? ()
+#0  0x00000000 in ?? ()
+#1  0x4ff2a090 in bootloader_init () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader_support/src/esp32p4/bootloader_esp32p4.c:166
+#2  0x4ff29eee in call_start_cpu0 () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader/subproject/main/bootloader_start.c:34
+#3  0x4fc04f6c in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+ESP-ROM:esp32p4-eco2-20240710
+Build:Jul 10 2024
+rst:0x7 (HP_SYS_HP_WDT_RESET),boot:0xf (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4fc00f36
+SPI mode:DIO, clock div:1
+load:0x4ff33ce0,len:0x173c
+load:0x4ff29ed0,len:0xff0
+load:0x4ff2cbd0,len:0x3608
+entry 0x4ff29eda
+[0;32mI (25) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Jul  2 2026 21:27:20[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+Guru Meditation Error: Core 0 panic'ed (Store/AMO access fault)
+Core 0 register dump:
+PC      : 0x4ff2f5b4  RA      : 0x4ff2a090  SP      : 0x4ff3cd30  GP      : 0x00000000
+TP      : 0x00000000  T0      : 0x4fc10f0e  T1      : 0x4fc0072c  T2      : 0x4ff3ce38
+S0      : 0x00000067  S1      : 0x0000006a  A0      : 0x00000000  A1      : 0x00000011
+A2      : 0x00000400  A3      : 0x5008e380  A4      : 0x5008e37c  A5      : 0x00000001
+A6      : 0xa0000000  A7      : 0x0000000a  S2      : 0x00000000  S3      : 0x4ff40000
+S4      : 0x0000ffff  S5      : 0x4fc1da4c  S6      : 0x00007d70  S7      : 0x4ff40000
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000
+T3      : 0x00000000  T4      : 0xd53302e7  T5      : 0xd7b30015  T6      : 0x871302e7
+MSTATUS : 0x00001880  MCAUSE  : 0x38000007  MTVAL   : 0x5008e380  INTLEVEL: 0x4ff2a08c
+
+
+add symbol table from file "C:\Projects\OpenControlCenter_CPP\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+0x00000000 in ?? ()
+#0  0x00000000 in ?? ()
+#1  0x4ff2a090 in bootloader_init () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader_support/src/esp32p4/bootloader_esp32p4.c:166
+#2  0x4ff29eee in call_start_cpu0 () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader/subproject/main/bootloader_start.c:34
+#3  0x4fc04f6c in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+ESP-ROM:esp32p4-eco2-20240710
+Build:Jul 10 2024
+rst:0x7 (HP_SYS_HP_WDT_RESET),boot:0xf (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4fc00f36
+SPI mode:DIO, clock div:1
+load:0x4ff33ce0,len:0x173c
+load:0x4ff29ed0,len:0xff0
+load:0x4ff2cbd0,len:0x3608
+entry 0x4ff29eda
+[0;32mI (25) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Jul  2 2026 21:27:20[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+Guru Meditation Error: Core 0 panic'ed (Store/AMO access fault)
+Core 0 register dump:
+PC      : 0x4ff2f5b4  RA      : 0x4ff2a090  SP      : 0x4ff3cd30  GP      : 0x00000000
+TP      : 0x00000000  T0      : 0x4fc10f0e  T1      : 0x4fc0072c  T2      : 0x4ff3ce38
+S0      : 0x00000067  S1      : 0x0000006a  A0      : 0x00000000  A1      : 0x00000011
+A2      : 0x00000400  A3      : 0x5008e380  A4      : 0x5008e37c  A5      : 0x00000001
+A6      : 0xa0000000  A7      : 0x0000000a  S2      : 0x00000000  S3      : 0x4ff40000
+S4      : 0x0000ffff  S5      : 0x4fc1da4c  S6      : 0x00007d70  S7      : 0x4ff40000
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000
+T3      : 0x00000000  T4      : 0xd53302e7  T5      : 0xd7b30015  T6      : 0x871302e7
+MSTATUS : 0x00001880  MCAUSE  : 0x38000007  MTVAL   : 0x5008e380  INTLEVEL: 0x4ff2a08c
+
+
+add symbol table from file "C:\Projects\OpenControlCenter_CPP\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+0x00000000 in ?? ()
+#0  0x00000000 in ?? ()
+#1  0x4ff2a090 in bootloader_init () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader_support/src/esp32p4/bootloader_esp32p4.c:166
+#2  0x4ff29eee in call_start_cpu0 () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader/subproject/main/bootloader_start.c:34
+#3  0x4fc04f6c in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+ESP-ROM:esp32p4-eco2-20240710
+Build:Jul 10 2024
+rst:0x7 (HP_SYS_HP_WDT_RESET),boot:0xf (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4fc00f36
+SPI mode:DIO, clock div:1
+load:0x4ff33ce0,len:0x173c
+load:0x4ff29ed0,len:0xff0
+load:0x4ff2cbd0,len:0x3608
+entry 0x4ff29eda
+[0;32mI (25) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Jul  2 2026 21:27:20[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+Guru Meditation Error: Core 0 panic'ed (Store/AMO access fault)
+Core 0 register dump:
+PC      : 0x4ff2f5b4  RA      : 0x4ff2a090  SP      : 0x4ff3cd30  GP      : 0x00000000
+TP      : 0x00000000  T0      : 0x4fc10f0e  T1      : 0x4fc0072c  T2      : 0x4ff3ce38
+S0      : 0x00000067  S1      : 0x0000006a  A0      : 0x00000000  A1      : 0x00000011
+A2      : 0x00000400  A3      : 0x5008e380  A4      : 0x5008e37c  A5      : 0x00000001
+A6      : 0xa0000000  A7      : 0x0000000a  S2      : 0x00000000  S3      : 0x4ff40000
+S4      : 0x0000ffff  S5      : 0x4fc1da4c  S6      : 0x00007d70  S7      : 0x4ff40000
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000
+T3      : 0x00000000  T4      : 0xd53302e7  T5      : 0xd7b30015  T6      : 0x871302e7
+MSTATUS : 0x00001880  MCAUSE  : 0x38000007  MTVAL   : 0x5008e380  INTLEVEL: 0x4ff2a08c
+
+
+add symbol table from file "C:\Projects\OpenControlCenter_CPP\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+0x00000000 in ?? ()
+#0  0x00000000 in ?? ()
+#1  0x4ff2a090 in bootloader_init () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader_support/src/esp32p4/bootloader_esp32p4.c:166
+#2  0x4ff29eee in call_start_cpu0 () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader/subproject/main/bootloader_start.c:34
+#3  0x4fc04f6c in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+ESP-ROM:esp32p4-eco2-20240710
+Build:Jul 10 2024
+rst:0x7 (HP_SYS_HP_WDT_RESET),boot:0xf (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4fc00f36
+SPI mode:DIO, clock div:1
+load:0x4ff33ce0,len:0x173c
+load:0x4ff29ed0,len:0xff0
+load:0x4ff2cbd0,len:0x3608
+entry 0x4ff29eda
+[0;32mI (25) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Jul  2 2026 21:27:20[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+Guru Meditation Error: Core 0 panic'ed (Store/AMO access fault)
+Core 0 register dump:
+PC      : 0x4ff2f5b4  RA      : 0x4ff2a090  SP      : 0x4ff3cd30  GP      : 0x00000000
+TP      : 0x00000000  T0      : 0x4fc10f0e  T1      : 0x4fc0072c  T2      : 0x4ff3ce38
+S0      : 0x00000067  S1      : 0x0000006a  A0      : 0x00000000  A1      : 0x00000011
+A2      : 0x00000400  A3      : 0x5008e380  A4      : 0x5008e37c  A5      : 0x00000001
+A6      : 0xa0000000  A7      : 0x0000000a  S2      : 0x00000000  S3      : 0x4ff40000
+S4      : 0x0000ffff  S5      : 0x4fc1da4c  S6      : 0x00007d70  S7      : 0x4ff40000
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000
+T3      : 0x00000000  T4      : 0xd53302e7  T5      : 0xd7b30015  T6      : 0x871302e7
+MSTATUS : 0x00001880  MCAUSE  : 0x38000007  MTVAL   : 0x5008e380  INTLEVEL: 0x4ff2a08c
+
+
+add symbol table from file "C:\Projects\OpenControlCenter_CPP\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+0x00000000 in ?? ()
+#0  0x00000000 in ?? ()
+#1  0x4ff2a090 in bootloader_init () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader_support/src/esp32p4/bootloader_esp32p4.c:166
+#2  0x4ff29eee in call_start_cpu0 () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader/subproject/main/bootloader_start.c:34
+#3  0x4fc04f6c in ?? ()
+Backtrace stopped: previous frame inner to this frame (corrupt stack?)
+
+ESP-ROM:esp32p4-eco2-20240710
+Build:Jul 10 2024
+rst:0x7 (HP_SYS_HP_WDT_RESET),boot:0xf (SPI_FAST_FLASH_BOOT)
+Core0 Saved PC:0x4fc00f36
+SPI mode:DIO, clock div:1
+load:0x4ff33ce0,len:0x173c
+load:0x4ff29ed0,len:0xff0
+load:0x4ff2cbd0,len:0x3608
+entry 0x4ff29eda
+[0;32mI (25) boot: ESP-IDF v5.5.4 2nd stage bootloader[0m
+[0;32mI (25) boot: compile time Jul  2 2026 21:27:20[0m
+[0;32mI (26) boot: Multicore bootloader[0m
+Guru Meditation Error: Core 0 panic'ed (Store/AMO access fault)
+Core 0 register dump:
+PC      : 0x4ff2f5b4  RA      : 0x4ff2a090  SP      : 0x4ff3cd30  GP      : 0x00000000
+TP      : 0x00000000  T0      : 0x4fc10f0e  T1      : 0x4fc0072c  T2      : 0x4ff3ce38
+S0      : 0x00000067  S1      : 0x0000006a  A0      : 0x00000000  A1      : 0x00000011
+A2      : 0x00000400  A3      : 0x5008e380  A4      : 0x5008e37c  A5      : 0x00000001
+A6      : 0xa0000000  A7      : 0x0000000a  S2      : 0x00000000  S3      : 0x4ff40000
+S4      : 0x0000ffff  S5      : 0x4fc1da4c  S6      : 0x00007d70  S7      : 0x4ff40000
+S8      : 0x00000000  S9      : 0x00000000  S10     : 0x00000000  S11     : 0x00000000
+T3      : 0x00000000  T4      : 0xd53302e7  T5      : 0xd7b30015  T6      : 0x871302e7
+MSTATUS : 0x00001880  MCAUSE  : 0x38000007  MTVAL   : 0x5008e380  INTLEVEL: 0x4ff2a08c
+
+
+add symbol table from file "C:\Projects\OpenControlCenter_CPP\build\bootloader\bootloader.elf"
+warning: could not convert 'main' from the host encoding (CP1252) to UTF-32.
+This normally should not happen, please file a bug report.
+0x00000000 in ?? ()
+#0  0x00000000 in ?? ()
+#1  0x4ff2a090 in bootloader_init () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader_support/src/esp32p4/bootloader_esp32p4.c:166
+#2  0x4ff29eee in call_start_cpu0 () at C:/Espressif/frameworks/esp-idf-v5.5.4/components/bootloader/subproject/main/bootloader_start.c:34
+#3  0x4fc04f6c in ?? ()
+Backt
