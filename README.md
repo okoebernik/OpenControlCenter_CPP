@@ -1,34 +1,41 @@
-\# OpenControlCenter
+# OpenControlCenter
 
+> One Platform. Unlimited Systems.
 
+OpenControlCenter is a modular embedded HMI platform based on ESP-IDF, LVGL and C++17.
 
-OpenControlCenter is a C++17 based embedded HMI platform for the Waveshare ESP32-P4-WIFI6-Touch-LCD-7B.
+The project started on the Waveshare ESP32-P4-WIFI6-Touch-LCD-7B and is designed to become a reusable control platform for smart home, monitoring, automation, aquarium systems, Victron, Synology, Proxmox, weather stations and future modules.
 
+## Current Status
 
+Version: **0.1.0 – The Foundation**
 
-\## Current status
+Implemented:
 
+- C++17 ESP-IDF project structure
+- LVGL display integration
+- Theme system
+- ScreenManager
+- EventBus
+- ServiceManager
+- LayoutManager
+- Dashboard screen
+- Settings screen
+- Navigation bar
+- Widget system
+- Card
+- MetricRow
+- PrimaryValue
+- SystemModel
+- SystemService
+- Architecture documentation
+- Architecture Decision Records
 
+## Vision
 
-\- ESP32-P4 Rev 1.x support
+OpenControlCenter is not a dashboard.
 
-\- ESP-IDF 5.5.4
+OpenControlCenter is a platform.
 
-\- C++17
-
-\- LVGL display initialization
-
-\- PSRAM enabled
-
-\- 32 MB flash configured
-
-\- Basic splash screen
-
-
-
-\## Target
-
-
-
-A modular touch dashboard for MQTT, smart home, aquarium, Victron, Proxmox, Synology and automation systems.
+**One Platform. Unlimited Systems.**
 
