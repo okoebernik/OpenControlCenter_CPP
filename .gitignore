@@ -1,6 +1,14 @@
 build/
 managed_components/
 dependencies.lock
-sdkconfig.old
-*.pyc
+
 .vscode/
+.idea/
+
+*.log
+*.tmp
+*.bak
+
+__pycache__/
+.DS_Store
+Thumbs.db
