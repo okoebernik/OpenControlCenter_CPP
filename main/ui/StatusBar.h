@@ -1,5 +1,5 @@
 #pragma once
-
+#include "viewmodels/DashboardViewModel.h"
 #include "lvgl.h"
 
 namespace OCC
@@ -10,6 +10,7 @@ class StatusBar
 public:
     void create(lv_obj_t *parent);
     void update(const char *timeText, const char *wifiText, const char *mqttText);
+	void update(const DashboardViewModel &viewModel);
 
 private:
     lv_obj_t *m_timeLabel = nullptr;

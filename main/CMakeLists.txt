@@ -23,10 +23,13 @@ idf_component_register(
 		"widgets/SystemCard.cpp"
 		
 		"models/SystemModel.cpp"
+		"models/ClockModel.cpp"
 		
 		"viewmodels/DashboardViewModel.cpp"
 		
 		"services/SystemService.cpp"
+		"services/ClockService.cpp"
+		
     INCLUDE_DIRS
         "."
         "app"
@@ -35,6 +38,7 @@ idf_component_register(
         "widgets"
         "services"
         "models"
+		"viewmodels"
 )
 
 target_compile_features(${COMPONENT_LIB} PRIVATE cxx_std_17)

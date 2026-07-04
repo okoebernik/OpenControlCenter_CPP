@@ -5,6 +5,7 @@
 #include "lvgl.h"
 #include "Card.h"
 #include "MetricRow.h"
+#include "viewmodels/DashboardViewModel.h"
 
 namespace OCC
 {
@@ -19,6 +20,7 @@ public:
     void setPosition(int x, int y);
     void setSize(int width, int height);
     void setHeap(uint32_t heapBytes);
+	void update(const DashboardViewModel &viewModel);
 
     Card &card();
 

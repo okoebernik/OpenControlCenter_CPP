@@ -36,7 +36,15 @@ void SystemCard::setHeap(uint32_t heapBytes)
     snprintf(buffer, sizeof(buffer), "%lu KB", static_cast<unsigned long>(heapBytes / 1024));
     m_heapRow->setValue(buffer);
 }
+void SystemCard::update(const DashboardViewModel &viewModel)
+{
+    m_card.setPrimaryValue(viewModel.systemPrimaryText());
 
+    if (m_heapRow)
+    {
+        m_heapRow->setValue(viewModel.heapText());
+    }
+}
 Card &SystemCard::card()
 {
     return m_card;

@@ -42,8 +42,10 @@ void Application::run()
 
     registerScreens();
 	registerEvents();
+	m_screenManager.create(lv_scr_act());
 	
 	m_serviceManager.add(&m_systemService);
+	m_serviceManager.add(&m_clockService);
 	m_serviceManager.begin();
     m_screenManager.show(ScreenId::Dashboard);
 
@@ -62,6 +64,8 @@ void Application::run()
 
 void Application::registerScreens()
 {
+	m_dashboardScreen.setViewModel(&m_dashboardViewModel);
+	
     m_screenManager.registerScreen(ScreenId::Dashboard, &m_dashboardScreen);
     m_screenManager.registerScreen(ScreenId::Settings, &m_settingsScreen);
 }

@@ -43,5 +43,12 @@ void StatusBar::update(const char *timeText, const char *wifiText, const char *m
     if (m_wifiLabel) lv_label_set_text(m_wifiLabel, wifiText);
     if (m_mqttLabel) lv_label_set_text(m_mqttLabel, mqttText);
 }
-
+void StatusBar::update(const DashboardViewModel &viewModel)
+{
+    update(
+        viewModel.clockText(),
+        "WiFi -",
+        "MQTT -"
+    );
+}
 }

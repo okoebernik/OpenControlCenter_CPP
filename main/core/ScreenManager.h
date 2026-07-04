@@ -14,6 +14,7 @@ enum class ScreenId
 class ScreenManager
 {
 public:
+	void create(lv_obj_t *parent);
     void registerScreen(ScreenId id, Screen *screen);
     void show(ScreenId id);
     void update();

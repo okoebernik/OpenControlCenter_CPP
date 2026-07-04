@@ -7,6 +7,9 @@
 #include "SystemModel.h"
 #include "SystemService.h"
 #include "ServiceManager.h"
+#include "DashboardViewModel.h"
+#include "models/ClockModel.h"
+#include "services/ClockService.h"
 
 namespace OCC
 {
@@ -36,6 +39,9 @@ private:
 	ServiceManager m_serviceManager;
 	SystemModel m_systemModel{&m_eventBus};
 	SystemService m_systemService{&m_systemModel};
+	DashboardViewModel m_dashboardViewModel{&m_systemModel, &m_clockModel};
+	ClockModel m_clockModel;
+	ClockService m_clockService{&m_clockModel};
 };
 
 }

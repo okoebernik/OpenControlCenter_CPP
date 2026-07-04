@@ -24,6 +24,11 @@ void ScreenManager::show(ScreenId id)
         return;
     }
 
+    if (m_currentScreen)
+    {
+        m_currentScreen->hide();
+    }
+
     m_currentId = id;
     m_hasCurrentId = true;
 
@@ -51,5 +56,18 @@ void ScreenManager::update()
         m_currentScreen->update();
     }
 }
+void ScreenManager::create(lv_obj_t *parent)
+{
+    if (m_dashboardScreen)
+    {
+        m_dashboardScreen->create(parent);
+        m_dashboardScreen->hide();
+    }
 
+    if (m_settingsScreen)
+    {
+        m_settingsScreen->create(parent);
+        m_settingsScreen->hide();
+    }
+}
 }

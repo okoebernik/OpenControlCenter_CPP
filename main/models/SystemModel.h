@@ -13,7 +13,7 @@ public:
     explicit SystemModel(EventBus *bus);
 
     void setHeap(uint32_t heap);
-
+	
     uint32_t heap() const;
 
 private:
@@ -21,6 +21,8 @@ private:
     EventBus *m_bus;
 
     uint32_t m_heap = 0;
+	
+	
 };
 
 }

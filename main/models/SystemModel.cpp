@@ -27,5 +27,4 @@ uint32_t SystemModel::heap() const
 {
     return m_heap;
 }
-
 }
