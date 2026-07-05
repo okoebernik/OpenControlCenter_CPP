@@ -5,6 +5,8 @@
 #include "Card.h"
 #include "LayoutManager.h"
 #include "SystemCard.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
 namespace OCC
 {
@@ -17,6 +19,11 @@ void DashboardScreen::setViewModel(DashboardViewModel *viewModel)
 {
     m_viewModel = viewModel;
 }
+void DashboardScreen::setStatusBarViewModel(StatusBarViewModel *viewModel)
+{
+    m_statusBarViewModel = viewModel;
+}
+
 void DashboardScreen::create(lv_obj_t *parent)
 {
     m_root = lv_obj_create(parent);
@@ -94,15 +101,26 @@ void DashboardScreen::hide()
 }
 void DashboardScreen::update()
 {
-    if (!m_viewModel)
+    static TickType_t lastTick = 0;
+    TickType_t now = xTaskGetTickCount();
+
+    if ((now - lastTick) < pdMS_TO_TICKS(250))
     {
         return;
     }
 
-    m_viewModel->update();
+    lastTick = now;
 
-    m_statusBar.update(*m_viewModel);
+    if (m_statusBarViewModel)
+    {
+        m_statusBarViewModel->update();
+        m_statusBar.update(*m_statusBarViewModel);
+    }
 
-    m_systemCard.update(*m_viewModel);
+    if (m_viewModel)
+    {
+        m_viewModel->update();
+        m_systemCard.update(*m_viewModel);
+    }
 }
 }

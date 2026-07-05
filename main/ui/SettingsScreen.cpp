@@ -2,7 +2,8 @@
 #include "Theme.h"
 #include "StatusBar.h"
 #include "NavigationBar.h"
-
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 #include "lvgl.h"
 
 namespace OCC
@@ -21,9 +22,8 @@ void SettingsScreen::create(lv_obj_t *parent)
 
     Theme::applyScreen(m_root);
 
-    StatusBar statusBar;
-    statusBar.create(m_root);
-    statusBar.update("10:42", "WiFi -", "MQTT -");
+	m_statusBar.create(m_root);
+	m_statusBar.update("00:00", "WiFi -", "MQTT -");
 
     m_navigationBar.create(m_root);
 
@@ -53,9 +53,29 @@ void SettingsScreen::hide()
         lv_obj_add_flag(m_root, LV_OBJ_FLAG_HIDDEN);
     }
 }
+void SettingsScreen::setStatusBarViewModel(StatusBarViewModel *viewModel)
+{
+    m_statusBarViewModel = viewModel;
+}
 
 void SettingsScreen::update()
 {
-}
+    static TickType_t lastTick = 0;
+    TickType_t now = xTaskGetTickCount();
 
+    if ((now - lastTick) < pdMS_TO_TICKS(250))
+    {
+        return;
+    }
+
+    lastTick = now;
+
+    if (!m_statusBarViewModel)
+    {
+        return;
+    }
+
+    m_statusBarViewModel->update();
+    m_statusBar.update(*m_statusBarViewModel);
+}
 }

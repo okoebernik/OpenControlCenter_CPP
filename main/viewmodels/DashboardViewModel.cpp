@@ -5,9 +5,8 @@
 namespace OCC
 {
 
-DashboardViewModel::DashboardViewModel(SystemModel *systemModel, ClockModel *clockModel)
-    : m_systemModel(systemModel),
-      m_clockModel(clockModel)
+DashboardViewModel::DashboardViewModel(SystemModel *systemModel)
+    : m_systemModel(systemModel)
 {
 }
 
@@ -37,21 +36,6 @@ void DashboardViewModel::update()
         "32 MB"
     );
 	
-	if (m_clockModel)
-	{
-		uint32_t seconds = m_clockModel->seconds();
-
-		uint32_t minutes = (seconds / 60) % 60;
-		uint32_t hours = (seconds / 3600) % 24;
-
-		snprintf(
-			m_clockText,
-			sizeof(m_clockText),
-			"%02lu:%02lu",
-			static_cast<unsigned long>(hours),
-			static_cast<unsigned long>(minutes)
-    );
-}
 }
 
 const char *DashboardViewModel::heapText() const
@@ -67,9 +51,5 @@ const char *DashboardViewModel::systemPrimaryText() const
 const char *DashboardViewModel::flashText() const
 {
     return m_flashText;
-}
-const char *DashboardViewModel::clockText() const
-{
-    return m_clockText;
 }
 }

@@ -1,18 +1,16 @@
 #pragma once
 
-#include <cstdint>
-
 namespace OCC
 {
 
 class ClockModel
 {
 public:
-    void setSeconds(uint32_t seconds);
-    uint32_t seconds() const;
+    void setTimeText(const char *text);
+    const char *timeText() const;
 
 private:
-    uint32_t m_seconds = 0;
+    char m_timeText[16] = "00:00";
 };
 
 }

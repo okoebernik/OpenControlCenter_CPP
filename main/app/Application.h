@@ -10,6 +10,9 @@
 #include "DashboardViewModel.h"
 #include "models/ClockModel.h"
 #include "services/ClockService.h"
+#include "viewmodels/StatusBarViewModel.h"
+#include "models/WiFiModel.h"
+#include "services/WiFiService.h"
 
 namespace OCC
 {
@@ -39,9 +42,13 @@ private:
 	ServiceManager m_serviceManager;
 	SystemModel m_systemModel{&m_eventBus};
 	SystemService m_systemService{&m_systemModel};
-	DashboardViewModel m_dashboardViewModel{&m_systemModel, &m_clockModel};
+	DashboardViewModel m_dashboardViewModel{&m_systemModel};
 	ClockModel m_clockModel;
 	ClockService m_clockService{&m_clockModel};
+	WiFiModel m_wifiModel;
+	WiFiService m_wifiService{&m_wifiModel};
+
+	StatusBarViewModel m_statusBarViewModel{&m_clockModel, &m_wifiModel};
 };
 
 }

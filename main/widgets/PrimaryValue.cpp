@@ -1,5 +1,6 @@
 #include "PrimaryValue.h"
 #include "Theme.h"
+#include <cstring>
 
 namespace OCC
 {
@@ -26,7 +27,12 @@ void PrimaryValue::setPosition(int x, int y)
 
 void PrimaryValue::setValue(const char *value)
 {
-    if (m_valueLabel)
+    if (!m_valueLabel || !value)
+    {
+        return;
+    }
+
+    if (std::strcmp(lv_label_get_text(m_valueLabel), value) != 0)
     {
         lv_label_set_text(m_valueLabel, value);
     }

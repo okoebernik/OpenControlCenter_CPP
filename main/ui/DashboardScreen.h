@@ -6,6 +6,7 @@
 #include "widgets/SystemCard.h"
 #include "widgets/Card.h"
 #include "viewmodels/DashboardViewModel.h"
+#include "viewmodels/StatusBarViewModel.h"
 #include "StatusBar.h"
 
 namespace OCC
@@ -17,6 +18,7 @@ public:
     explicit DashboardScreen(EventBus *eventBus);
 
     void setViewModel(DashboardViewModel *viewModel);
+	void setStatusBarViewModel(StatusBarViewModel *viewModel);
 
     void create(lv_obj_t *parent) override;
     void show() override;
@@ -26,7 +28,8 @@ public:
 private:
     EventBus *m_eventBus = nullptr;
     DashboardViewModel *m_viewModel = nullptr;
-
+	StatusBarViewModel *m_statusBarViewModel = nullptr;
+	uint32_t m_updateElapsedMs = 0;
     lv_obj_t *m_root = nullptr;
 
     NavigationBar m_navigationBar;

@@ -20,6 +20,10 @@ private:
     ClockModel *m_model = nullptr;
     uint32_t m_elapsedMs = 0;
     uint32_t m_seconds = 0;
+	bool m_sntpStarted = false;
+
+	void startSntp();
+	bool isTimeValid() const;
 };
 
 }

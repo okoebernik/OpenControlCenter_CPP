@@ -46,6 +46,7 @@ void Application::run()
 	
 	m_serviceManager.add(&m_systemService);
 	m_serviceManager.add(&m_clockService);
+	m_serviceManager.add(&m_wifiService);
 	m_serviceManager.begin();
     m_screenManager.show(ScreenId::Dashboard);
 
@@ -64,8 +65,11 @@ void Application::run()
 
 void Application::registerScreens()
 {
-	m_dashboardScreen.setViewModel(&m_dashboardViewModel);
-	
+    m_dashboardScreen.setViewModel(&m_dashboardViewModel);
+    m_dashboardScreen.setStatusBarViewModel(&m_statusBarViewModel);
+
+    m_settingsScreen.setStatusBarViewModel(&m_statusBarViewModel);
+
     m_screenManager.registerScreen(ScreenId::Dashboard, &m_dashboardScreen);
     m_screenManager.registerScreen(ScreenId::Settings, &m_settingsScreen);
 }

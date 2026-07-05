@@ -12,3 +12,6 @@ dependencies.lock
 __pycache__/
 .DS_Store
 Thumbs.db
+main/secrets/WiFiSecrets.h
+sdkconfig
+sdkconfig.old

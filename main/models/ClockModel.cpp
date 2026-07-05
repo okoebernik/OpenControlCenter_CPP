@@ -1,16 +1,24 @@
 #include "ClockModel.h"
 
+#include <cstring>
+
 namespace OCC
 {
 
-void ClockModel::setSeconds(uint32_t seconds)
+void ClockModel::setTimeText(const char *text)
 {
-    m_seconds = seconds;
+    if (!text)
+    {
+        return;
+    }
+
+    strncpy(m_timeText, text, sizeof(m_timeText));
+    m_timeText[sizeof(m_timeText) - 1] = '\0';
 }
 
-uint32_t ClockModel::seconds() const
+const char *ClockModel::timeText() const
 {
-    return m_seconds;
+    return m_timeText;
 }
 
 }

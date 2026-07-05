@@ -1,5 +1,6 @@
 #include "StatusBar.h"
 #include "Theme.h"
+#include <cstring>
 
 namespace OCC
 {
@@ -39,16 +40,27 @@ void StatusBar::create(lv_obj_t *parent)
 
 void StatusBar::update(const char *timeText, const char *wifiText, const char *mqttText)
 {
-    if (m_timeLabel) lv_label_set_text(m_timeLabel, timeText);
-    if (m_wifiLabel) lv_label_set_text(m_wifiLabel, wifiText);
-    if (m_mqttLabel) lv_label_set_text(m_mqttLabel, mqttText);
+    if (m_timeLabel && std::strcmp(lv_label_get_text(m_timeLabel), timeText) != 0)
+    {
+        lv_label_set_text(m_timeLabel, timeText);
+    }
+
+    if (m_wifiLabel && std::strcmp(lv_label_get_text(m_wifiLabel), wifiText) != 0)
+    {
+        lv_label_set_text(m_wifiLabel, wifiText);
+    }
+
+    if (m_mqttLabel && std::strcmp(lv_label_get_text(m_mqttLabel), mqttText) != 0)
+    {
+        lv_label_set_text(m_mqttLabel, mqttText);
+    }
 }
-void StatusBar::update(const DashboardViewModel &viewModel)
+void StatusBar::update(const StatusBarViewModel &viewModel)
 {
-    update(
-        viewModel.clockText(),
-        "WiFi -",
-        "MQTT -"
-    );
+	update(
+		viewModel.clockText(),
+		viewModel.wifiText(),
+		viewModel.mqttText()
+	);
 }
 }

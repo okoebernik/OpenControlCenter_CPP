@@ -24,11 +24,16 @@ idf_component_register(
 		
 		"models/SystemModel.cpp"
 		"models/ClockModel.cpp"
+		"models/WiFiModel.cpp"
 		
 		"viewmodels/DashboardViewModel.cpp"
+		"viewmodels/StatusBarViewModel.cpp"
 		
 		"services/SystemService.cpp"
 		"services/ClockService.cpp"
+		"services/WiFiService.cpp"
+		
+		"hardware/WiFiHardware.cpp"
 		
     INCLUDE_DIRS
         "."
@@ -39,6 +44,8 @@ idf_component_register(
         "services"
         "models"
 		"viewmodels"
+		"secrets"
+		"hardware"
 )
 
 target_compile_features(${COMPONENT_LIB} PRIVATE cxx_std_17)

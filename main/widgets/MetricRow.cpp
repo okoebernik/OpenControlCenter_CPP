@@ -1,5 +1,6 @@
 #include "MetricRow.h"
 #include "Theme.h"
+#include <cstring>
 
 namespace OCC
 {
@@ -20,15 +21,19 @@ void MetricRow::setPosition(int x, int y)
     lv_obj_set_pos(m_label, x, y);
     lv_obj_set_pos(m_value, x + m_width - 80, y);
 }
-
 void MetricRow::setWidth(int width)
 {
-    m_width = width;
+	m_width = width;
 }
 
 void MetricRow::setValue(const char *value)
 {
-    if (m_value)
+    if (!m_value || !value)
+    {
+        return;
+    }
+
+    if (std::strcmp(lv_label_get_text(m_value), value) != 0)
     {
         lv_label_set_text(m_value, value);
     }
