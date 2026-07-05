@@ -34,11 +34,14 @@ void WiFiService::update(uint32_t deltaMs)
 
     bool connected = WiFiHardware::isConnected();
 
-    if (m_model)
-    {
-        m_model->setConnected(connected);
-        m_model->setIpText(connected ? "connected" : "0.0.0.0");
-    }
+	if (m_model)
+	{
+		m_model->setConnected(connected);
+
+		char ipText[32];
+		WiFiHardware::getIpText(ipText, sizeof(ipText));
+		m_model->setIpText(ipText);
+	}
 }
 
 }

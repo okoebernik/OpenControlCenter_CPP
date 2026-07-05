@@ -2,41 +2,48 @@
 
 #include "esp_log.h"
 #include "esp_sntp.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 #include <ctime>
 #include <cstdio>
+#include <cstdlib>
 
 namespace OCC
 {
 
 static const char *TAG = "ClockService";
 
-ClockService::ClockService(ClockModel *model)
-    : m_model(model)
+ClockService::ClockService(ClockModel *clockModel, WiFiModel *wifiModel)
+    : m_clockModel(clockModel),
+      m_wifiModel(wifiModel)
 {
 }
 
 void ClockService::begin()
 {
     ESP_LOGI(TAG, "ClockService started");
+
+    setenv("TZ", "CET-1CEST,M3.5.0/2,M10.5.0/3", 1);
+    tzset();
 }
+
 void ClockService::startSntp()
 {
-    if (m_sntpStarted)
+    if (m_sntpStarted || m_sntpStartRequested)
     {
         return;
     }
 
-    ESP_LOGI(TAG, "Starting SNTP");
+    m_sntpStartRequested = true;
 
-    esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
-    esp_sntp_setservername(0, "pool.ntp.org");
-    esp_sntp_init();
-
-    // Deutschland: UTC+1, Sommerzeit automatisch nach EU-Regel
-    setenv("TZ", "CET-1CEST,M3.5.0/2,M10.5.0/3", 1);
-    tzset();
-
-    m_sntpStarted = true;
+    xTaskCreate(
+        sntpStartTask,
+        "sntp_start",
+        8192,
+        this,
+        3,
+        nullptr
+    );
 }
 
 bool ClockService::isTimeValid() const
@@ -46,6 +53,7 @@ bool ClockService::isTimeValid() const
 
     return now > 1700000000;
 }
+
 void ClockService::update(uint32_t deltaMs)
 {
     m_elapsedMs += deltaMs;
@@ -56,25 +64,25 @@ void ClockService::update(uint32_t deltaMs)
     }
 
     m_elapsedMs = 0;
-    m_seconds++;
+    m_uptimeSeconds++;
 
-    if (!m_model)
+    if (!m_clockModel)
     {
         return;
     }
-	
-	if (!m_sntpStarted)
+
+    if (m_wifiModel && m_wifiModel->hasIp() && !m_sntpStarted)
 	{
 		startSntp();
 	}
+
     char buffer[16];
 
-    time_t now;
-    time(&now);
-
-    // Wenn die Zeit noch nicht gesetzt ist, ist sie meist nahe 1970.
     if (isTimeValid())
     {
+        time_t now;
+        time(&now);
+
         struct tm timeinfo;
         localtime_r(&now, &timeinfo);
 
@@ -88,8 +96,8 @@ void ClockService::update(uint32_t deltaMs)
     }
     else
     {
-        uint32_t minutes = (m_seconds / 60) % 60;
-        uint32_t hours = (m_seconds / 3600) % 24;
+        uint32_t minutes = (m_uptimeSeconds / 60) % 60;
+        uint32_t hours = (m_uptimeSeconds / 3600) % 24;
 
         snprintf(
             buffer,
@@ -100,7 +108,27 @@ void ClockService::update(uint32_t deltaMs)
         );
     }
 
-    m_model->setTimeText(buffer);
+    m_clockModel->setTimeText(buffer);
 }
+void ClockService::sntpStartTask(void *param)
+{
+    auto *self = static_cast<ClockService *>(param);
 
+    if (!self)
+    {
+        vTaskDelete(nullptr);
+        return;
+    }
+
+    ESP_LOGI(TAG, "Starting SNTP");
+
+    esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
+    esp_sntp_setservername(0, "pool.ntp.org");
+    esp_sntp_setservername(1, "time.google.com");
+    esp_sntp_init();
+
+    self->m_sntpStarted = true;
+
+    vTaskDelete(nullptr);
+}
 }

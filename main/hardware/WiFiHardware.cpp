@@ -4,7 +4,8 @@
 #include "esp_wifi.h"
 #include "esp_event.h"
 #include "esp_netif.h"
-
+#include "esp_netif_ip_addr.h"
+#include <cstdio>
 #include <cstring>
 
 namespace OCC
@@ -13,6 +14,7 @@ namespace OCC
 static const char *TAG = "WiFiHardware";
 
 static bool s_initialized = false;
+static esp_netif_t *s_staNetif = nullptr;
 
 void WiFiHardware::begin()
 {
@@ -31,7 +33,7 @@ void WiFiHardware::begin()
         ESP_ERROR_CHECK(eventLoopResult);
     }
 
-    esp_netif_create_default_wifi_sta();
+    s_staNetif = esp_netif_create_default_wifi_sta();
 
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
@@ -76,5 +78,31 @@ bool WiFiHardware::isConnected()
     wifi_ap_record_t ap_info;
     return esp_wifi_sta_get_ap_info(&ap_info) == ESP_OK;
 }
+void WiFiHardware::getIpText(char *buffer, int bufferSize)
+{
+    if (!buffer || bufferSize <= 0)
+    {
+        return;
+    }
 
+    snprintf(buffer, bufferSize, "0.0.0.0");
+
+    if (!s_staNetif)
+    {
+        return;
+    }
+
+    esp_netif_ip_info_t ipInfo;
+    if (esp_netif_get_ip_info(s_staNetif, &ipInfo) != ESP_OK)
+    {
+        return;
+    }
+
+    snprintf(
+        buffer,
+        bufferSize,
+        IPSTR,
+        IP2STR(&ipInfo.ip)
+    );
+}
 }

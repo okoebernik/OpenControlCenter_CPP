@@ -41,26 +41,33 @@ void Application::run()
     initialize();
 
     registerScreens();
-	registerEvents();
-	m_screenManager.create(lv_scr_act());
-	
-	m_serviceManager.add(&m_systemService);
-	m_serviceManager.add(&m_clockService);
-	m_serviceManager.add(&m_wifiService);
-	m_serviceManager.begin();
-    m_screenManager.show(ScreenId::Dashboard);
+    registerEvents();
+
+    if (bsp_display_lock(1000))
+    {
+        m_screenManager.create(lv_scr_act());
+        m_screenManager.show(ScreenId::Dashboard);
+        bsp_display_unlock();
+    }
+
+    m_serviceManager.add(&m_systemService);
+    m_serviceManager.add(&m_clockService);
+    m_serviceManager.add(&m_wifiService);
+    m_serviceManager.begin();
 
     while (true)
-{
-    m_serviceManager.update();
-    m_screenManager.update();
+    {
+        m_serviceManager.update();
 
-    lv_task_handler();
+        if (bsp_display_lock(50))
+        {
+            m_screenManager.update();
+            processPendingNavigation();
+            bsp_display_unlock();
+        }
 
-    processPendingNavigation();
-
-    vTaskDelay(pdMS_TO_TICKS(5));
-}
+        vTaskDelay(pdMS_TO_TICKS(10));
+    }
 }
 
 void Application::registerScreens()
