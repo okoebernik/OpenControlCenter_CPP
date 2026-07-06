@@ -68,15 +68,6 @@ void IconButton::onClicked(lv_event_t *event)
         button->m_callback(button->m_userData);
     }
 	
-	if (button->m_dispatcher)
-	{
-		button->m_dispatcher->dispatch(button->m_action);
-	}
 	
-}
-void IconButton::setAction(ActionDispatcher *dispatcher, UIAction action)
-{
-    m_dispatcher = dispatcher;
-    m_action = action;
 }
 }

@@ -1,7 +1,5 @@
 #pragma once
 
-#include "core/ActionDispatcher.h"
-#include "core/UIAction.h"
 #include "lvgl.h"
 
 namespace OCC
@@ -19,7 +17,6 @@ public:
     void setText(const char *text);
     void setCallback(ClickCallback callback, void *userData);
 	
-	void setAction(ActionDispatcher *dispatcher, UIAction action);
 
     lv_obj_t *root();
 
@@ -32,8 +29,6 @@ private:
     ClickCallback m_callback = nullptr;
     void *m_userData = nullptr;
 	
-	ActionDispatcher *m_dispatcher = nullptr;
-	UIAction m_action = UIAction::None;
 };
 
 }

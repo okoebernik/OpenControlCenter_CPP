@@ -9,7 +9,6 @@ idf_component_register(
 		"core/ScreenManager.cpp"
 		"core/ServiceManager.cpp"
 		"core/Configuration.cpp"
-		"core/ActionDispatcher.cpp"
 		
 		"ui/DashboardScreen.cpp"
         "ui/SplashScreen.cpp"
@@ -24,6 +23,7 @@ idf_component_register(
 		"widgets/PrimaryValue.cpp"
 		"widgets/SystemCard.cpp"
 		"widgets/IconButton.cpp"
+		"widgets/ValueEditor.cpp"
 		
 		"models/SystemModel.cpp"
 		"models/ClockModel.cpp"
