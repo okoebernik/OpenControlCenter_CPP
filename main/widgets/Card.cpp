@@ -71,7 +71,7 @@ void Card::setPrimaryValue(const char *value, const char *unit)
 void Card::addValue(const char *label, const char *value)
 {
     MetricRow row(m_content, label, value);
-    row.setWidth(210);
+    row.setWidth(200);
     row.setPosition(Theme::SpaceM, m_nextY);
 
     m_nextY += 26;
@@ -79,13 +79,11 @@ void Card::addValue(const char *label, const char *value)
 
 MetricRow *Card::addMetric(const char *label, const char *value)
 {
-    auto *row = new MetricRow(m_content, label, value);
-    row->setWidth(210);
-    row->setPosition(Theme::SpaceM, m_nextY);
-
-    m_nextY += 26;
-
-    return row;
+	auto *row = new MetricRow(m_content, label, value);
+	row->setWidth(200);
+	row->setPosition(Theme::SpaceM, m_nextY);
+	m_nextY += 26;
+	return row;
 }
 
 void Card::setStatus(CardStatus status)

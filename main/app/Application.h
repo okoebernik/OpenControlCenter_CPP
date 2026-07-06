@@ -13,6 +13,7 @@
 #include "viewmodels/StatusBarViewModel.h"
 #include "models/WiFiModel.h"
 #include "services/WiFiService.h"
+#include "viewmodels/SettingsViewModel.h"
 
 namespace OCC
 {
@@ -47,7 +48,7 @@ private:
 	WiFiService m_wifiService{&m_wifiModel};	
 	ClockModel m_clockModel;
 	ClockService m_clockService{&m_clockModel, &m_wifiModel};
-
+	SettingsViewModel m_settingsViewModel;
 
 	StatusBarViewModel m_statusBarViewModel{&m_clockModel, &m_wifiModel};
 };

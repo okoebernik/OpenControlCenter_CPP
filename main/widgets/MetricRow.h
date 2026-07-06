@@ -15,9 +15,9 @@ public:
     void setValue(const char *value);
 
 private:
+    lv_obj_t *m_root = nullptr;
     lv_obj_t *m_label = nullptr;
     lv_obj_t *m_value = nullptr;
-    int m_width = 200;
 };
 
 }

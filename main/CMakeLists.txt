@@ -8,6 +8,8 @@ idf_component_register(
         "core/LayoutManager.cpp"
 		"core/ScreenManager.cpp"
 		"core/ServiceManager.cpp"
+		"core/Configuration.cpp"
+		"core/ActionDispatcher.cpp"
 		
 		"ui/DashboardScreen.cpp"
         "ui/SplashScreen.cpp"
@@ -21,19 +23,23 @@ idf_component_register(
 		"widgets/MetricRow.cpp"
 		"widgets/PrimaryValue.cpp"
 		"widgets/SystemCard.cpp"
+		"widgets/IconButton.cpp"
 		
 		"models/SystemModel.cpp"
 		"models/ClockModel.cpp"
 		"models/WiFiModel.cpp"
+		"models/SettingsModel.cpp"
 		
 		"viewmodels/DashboardViewModel.cpp"
 		"viewmodels/StatusBarViewModel.cpp"
+		"viewmodels/SettingsViewModel.cpp"
 		
 		"services/SystemService.cpp"
 		"services/ClockService.cpp"
 		"services/WiFiService.cpp"
 		
 		"hardware/WiFiHardware.cpp"
+		"hardware/PreferencesHardware.cpp"
 		
     INCLUDE_DIRS
         "."

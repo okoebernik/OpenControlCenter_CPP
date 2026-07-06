@@ -6,7 +6,7 @@
 #include "esp_log.h"
 
 #include "lvgl.h"
-
+#include "core/Configuration.h"
 #include "bsp/esp-bsp.h"
 #include "bsp/display.h"
 
@@ -16,7 +16,9 @@ namespace OCC
 static const char *TAG = "Application";
 
 void Application::initialize()
+		
 {
+	Configuration::instance().load();
     ESP_LOGI(TAG, "Initializing OpenControlCenter");
 
     bsp_display_cfg_t cfg =
@@ -34,6 +36,7 @@ void Application::initialize()
 
     bsp_display_start_with_config(&cfg);
     bsp_display_backlight_on();
+	bsp_display_brightness_set(Configuration::instance().displayBrightness());
 }
 
 void Application::run()
@@ -76,7 +79,9 @@ void Application::registerScreens()
     m_dashboardScreen.setStatusBarViewModel(&m_statusBarViewModel);
 
     m_settingsScreen.setStatusBarViewModel(&m_statusBarViewModel);
-
+	
+	m_settingsScreen.setViewModel(&m_settingsViewModel);
+	
     m_screenManager.registerScreen(ScreenId::Dashboard, &m_dashboardScreen);
     m_screenManager.registerScreen(ScreenId::Settings, &m_settingsScreen);
 }
@@ -99,8 +104,18 @@ void Application::handleEvent(const Event &event, void *userData)
         case EventType::NavigateToScreen:
 			 app->m_pendingScreen = event.screenId;
 			 app->m_hasPendingScreen = true;
-			 break;;
+			 break;
+		
+		case EventType::BrightnessDecrease:
+			app->m_settingsViewModel.decreaseBrightness();
+			bsp_display_brightness_set(Configuration::instance().displayBrightness());
+			break;
 
+		case EventType::BrightnessIncrease:
+			app->m_settingsViewModel.increaseBrightness();
+			bsp_display_brightness_set(Configuration::instance().displayBrightness());
+			break;
+		
         default:
             break;
     }

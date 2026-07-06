@@ -1,7 +1,8 @@
 #pragma once
 
-#include <cstdint>
 #include "ScreenManager.h"
+#include <cstdint>
+
 
 namespace OCC
 {
@@ -12,7 +13,9 @@ enum class EventType
     ClockTick,
     WifiStatusChanged,
     MqttStatusChanged,
-    SystemHeapChanged
+    SystemHeapChanged,
+	BrightnessDecrease,
+	BrightnessIncrease,
 };
 
 struct Event
